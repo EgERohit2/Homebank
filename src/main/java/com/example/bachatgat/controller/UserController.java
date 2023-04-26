@@ -31,10 +31,10 @@ public class UserController {
 	public String exportExcel(HttpServletResponse response)throws IOException{
 		response.setContentType("application/octet-stream");
 		String headerKey="Content-Disposition";
-		String headerValue="attachment;filename=Employee.xlsx";
+		String headerValue="attachment;filename=Bachatgat.xlsx";
 		response.setHeader(headerKey, headerValue);
-		List<User> employees=userRepository.findAll();
-		ExcelGenerator excelGenerator=new ExcelGenerator(employees);
+		List<User> users=userRepository.findAll();
+		ExcelGenerator excelGenerator=new ExcelGenerator(users);
 		excelGenerator.generateExcelFile(response);
 		return "coverted successfuly";
 	}

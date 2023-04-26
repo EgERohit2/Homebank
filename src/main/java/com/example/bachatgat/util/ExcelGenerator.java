@@ -16,21 +16,20 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import com.example.bachatgat.entities.User;
 
 public class ExcelGenerator {
-
 	private List<User> userList;
 	private XSSFWorkbook workbook;
 	private XSSFSheet sheet;
-	
+
 	public ExcelGenerator(List<User> userList) {
 		super();
 		this.userList = userList;
 		this.workbook = new XSSFWorkbook();
 	}
-	
+
 	public ExcelGenerator() {
 		super();
 	}
-	
+
 	private void createCell(Row row, int cellCount, Object valueOfCell, CellStyle style) {
 		sheet.autoSizeColumn(cellCount);
 		Cell cell = row.createCell(cellCount);
@@ -40,7 +39,11 @@ public class ExcelGenerator {
 			cell.setCellValue((Long) valueOfCell);
 		} else if (valueOfCell instanceof Boolean) {
 			cell.setCellValue((Boolean) valueOfCell);
-		} else {
+		}
+			else if(valueOfCell instanceof Double) {
+				cell.setCellValue((Double) valueOfCell);
+		
+		} else {	
 			cell.setCellValue((String) valueOfCell);
 		}
 		cell.setCellStyle(style);
@@ -48,7 +51,7 @@ public class ExcelGenerator {
 	}
 
 	private void writeHeader() {
-		sheet = workbook.createSheet("Workers");
+		sheet = workbook.createSheet("Users");
 		Row row = sheet.createRow(0);
 		CellStyle style = workbook.createCellStyle();
 		XSSFFont font = workbook.createFont();
@@ -56,9 +59,13 @@ public class ExcelGenerator {
 		font.setFontHeight(16.00);
 		style.setFont(font);
 		createCell(row, 0, "ID", style);
-		createCell(row, 1, "Worker name", style);
-		createCell(row, 2, "Worker email", style);
-		createCell(row, 3, "Worker mobileno", style);
+		createCell(row, 1, "User name", style);
+		createCell(row, 2, "monthly", style);
+		createCell(row, 3, "mobileno", style);
+		createCell(row, 4, "principal", style);
+		createCell(row, 5, "penalty", style);
+		createCell(row, 6, "loan", style);
+		createCell(row, 7, "loanDate", style);
 
 	}
 
@@ -90,7 +97,4 @@ public class ExcelGenerator {
 		workbook.close();
 		outputStream.close();
 	}
-
-
-
 }

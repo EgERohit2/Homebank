@@ -9,8 +9,8 @@ import java.util.List;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import com.example.bachatgat.entities.User;
@@ -27,10 +27,8 @@ public class ExcelImport {
 		double principal=0.0d;
 		double loan=0.0d;
 		String loanDate=""; 
-		
-		
 
-		String filepath = "C:\\Users\\dell\\Downloads\\Bachatgat (1).xlsx";
+		String filepath = "C:\\Users\\dell\\Downloads\\Employee (1).xlsx";
 		long start = System.currentTimeMillis();
 		try {
 		FileInputStream fileinput;
@@ -68,7 +66,7 @@ public class ExcelImport {
 						penalty = nextCell.getNumericCellValue();
 						System.out.println(penalty);
 						break;
-						
+					
 					case 4:
 						loan = nextCell.getNumericCellValue();
 						System.out.println(loan);
@@ -83,7 +81,6 @@ public class ExcelImport {
 						System.out.println(loanDate);
 						break;
 					}
-					
 					wor.add(new User(id, name, monthly,penalty,principal,loan,loanDate));
 				}
 
@@ -98,5 +95,4 @@ public class ExcelImport {
 		return wor;
 
 	}
-
 }
